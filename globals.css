@@ -4,63 +4,51 @@
 
 @layer base {
   :root {
-    --font-sans: "Heebo", sans-serif;
-    --font-heading: "Rubik", sans-serif;
-
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 346 77% 49%;
-    --primary-foreground: 355 100% 97%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 346 77% 96%;
-    --secondary-foreground: 346 77% 30%;
+    --secondary: 0 84% 95%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 346 77% 49%;
-    --accent-foreground: 355 100% 97%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --success: 142 76% 36%;
-    --success-foreground: 355 100% 97%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 355 100% 97%;
-
-    --info: 217 91% 60%;
-    --info-foreground: 355 100% 97%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 346 77% 49%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 346 77% 49%;
-    --primary-foreground: 355 100% 97%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 346 30% 20%;
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -71,15 +59,6 @@
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
-    --success: 142 76% 36%;
-    --success-foreground: 355 100% 97%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 355 100% 97%;
-
-    --info: 217 91% 60%;
-    --info-foreground: 355 100% 97%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
@@ -93,15 +72,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading font-medium;
   }
 }
 
@@ -170,11 +140,30 @@
 }
 
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-card hover:-translate-y-1;
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }
 
 .glass-effect {
   @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg;
+}
+
+/* Responsive typography */
+@screen sm {
+  html {
+    font-size: 14px;
+  }
+}
+
+@screen md {
+  html {
+    font-size: 16px;
+  }
+}
+
+@screen lg {
+  html {
+    font-size: 18px;
+  }
 }
 
 /* Custom scrollbar */
@@ -190,63 +179,7 @@
   @apply bg-primary/50 rounded-full hover:bg-primary;
 }
 
-/* Fix for circular dependency - define directly instead of using @apply */
-.smooth-transition {
-  transition-property: all;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-}
-
-/* Badge variants */
-.badge-success {
-  @apply bg-success/20 text-success border-success/30;
-}
-
-.badge-warning {
-  @apply bg-warning/20 text-warning border-warning/30;
-}
-
-.badge-info {
-  @apply bg-info/20 text-info border-info/30;
-}
-
-/* RTL specific styles */
-[dir="rtl"] .ml-auto {
-  margin-left: auto;
-  margin-right: 0;
-}
-
-[dir="rtl"] .mr-auto {
-  margin-right: auto;
-  margin-left: 0;
-}
-
-[dir="rtl"] .ml-2 {
-  margin-left: 0;
-  margin-right: 0.5rem;
-}
-
-[dir="rtl"] .mr-2 {
-  margin-right: 0;
-  margin-left: 0.5rem;
-}
-
-[dir="rtl"] .ml-4 {
-  margin-left: 0;
-  margin-right: 1rem;
-}
-
-[dir="rtl"] .mr-4 {
-  margin-right: 0;
-  margin-left: 1rem;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.transition-all {
+  @apply transition-all duration-300 ease-in-out;
 }
 

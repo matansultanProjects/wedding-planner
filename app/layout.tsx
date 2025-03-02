@@ -1,14 +1,30 @@
 import type React from "react"
+import "@/app/globals.css"
+import { Rubik, Heebo } from "next/font/google"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/components/auth-provider"
+import { Toaster } from "@/components/ui/toaster"
+import { LanguageDetector } from "@/components/language-detector"
 
-const inter = Inter({ subsets: ["latin"] })
+// Load Heebo font with Hebrew and Latin subsets
+const heebo = Heebo({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+// Load Rubik font with Hebrew and Latin subsets
+const rubik = Rubik({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "חתונה חכמה - תכנון חתונות מושלם",
-  description: "פלטפורמה מקיפה לתכנון וניהול חתונות",
-    generator: 'v0.dev'
+  title: "wedfull - מתכנן החתונה שלך | Wedding Planner Dashboard",
+  description: "פלטפורמה מקיפה לתכנון חתונה מושלמת",
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -17,11 +33,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl">
-      <body className={inter.className}>{children}</body>
+    <html lang="he" dir="rtl" suppressHydrationWarning className="scroll-smooth">
+      <body className={`${heebo.variable} ${rubik.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <AuthProvider>
+            <LanguageDetector />
+            {children}
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
+
+import "./globals.css"
 
 
 
